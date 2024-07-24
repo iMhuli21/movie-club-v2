@@ -67,7 +67,7 @@ export default function Navbar() {
               </DialogContent>
             </Dialog>
           </div>
-          <div className='md:hidden'>
+          <div className='lg:hidden'>
             <Sheet>
               <SheetTrigger asChild>
                 <div>
