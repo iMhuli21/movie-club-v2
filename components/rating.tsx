@@ -1,13 +1,13 @@
 export default function Rating({
-  text,
+  vote,
   extraStyles,
 }: {
-  text: string;
+  vote: string;
   extraStyles?: string;
 }) {
   return (
     <div className='clear-bg px-2 py-1 rounded'>
-      <span className={`text-sm ${extraStyles}`}>{text}</span>
+      <span className={`text-sm ${extraStyles}`}>{vote}</span>
     </div>
   );
 }
