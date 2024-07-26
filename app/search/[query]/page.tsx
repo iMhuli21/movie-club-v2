@@ -1,5 +1,6 @@
 import { searchMovie } from '@/actions/search-movie';
 import MovieCard from '@/components/movie';
+import Pagination from '@/components/pagination';
 
 interface Props {
   params: {
@@ -17,7 +18,7 @@ export default async function SearchResults({
   const currPage = page ? page : 1;
   const movies = await searchMovie(encodeURIComponent(query), currPage);
   return (
-    <main className='px-5'>
+    <main className='px-5 mb-5'>
       <div className='flex flex-col items-start gap-2 w-fit mx-auto mt-5'>
         <span className='text-destructive font-medium'>Results for:</span>
         <span className='text-2xl font-bold'>{decodeURIComponent(query)}</span>
@@ -27,11 +28,13 @@ export default async function SearchResults({
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
-      {!movies && (
-        <div className='w-full h-full flex items-center justify-center'>
-          No movies found...
-        </div>
-      )}
+      {!movies ||
+        (movies?.length === 0 && (
+          <div className='w-full h-full flex items-center justify-center'>
+            No movies found...
+          </div>
+        ))}
+      <Pagination />
     </main>
   );
 }

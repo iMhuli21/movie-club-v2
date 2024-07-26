@@ -1,6 +1,7 @@
 import MovieCard from '@/components/movie';
 import Sidebar from '@/components/sidebar';
 import { getGenreMovies } from '@/actions/get-genre-movies';
+import Pagination from '@/components/pagination';
 
 interface Props {
   params: {
@@ -31,11 +32,14 @@ export default async function GenreMovies({
             <MovieCard key={movie.id} movie={movie} />
           ))}
         </div>
-        {!movies && (
-          <div className='w-full h-full flex items-center justify-center'>
-            No movies found...
-          </div>
-        )}
+        {!movies ||
+          (movies?.length === 0 && (
+            <div className='w-full h-full flex items-center justify-center'>
+              No movies found...
+            </div>
+          ))}
+
+        <Pagination />
       </div>
     </main>
   );
